@@ -19,6 +19,9 @@ class Dashboard extends Component {
     console.log('dashboard has mounted');
     console.log(this.props);
     this.props.setPath(this.props.location.pathname,this.props.history)
+    if (!this.props.myid){
+      this.props.history.push('/');
+    }
   }
 
   hc = e => {
@@ -32,7 +35,7 @@ class Dashboard extends Component {
   sp = () => {
     searchPosts(this.state.mine,this.state.term,this.props.myid)
       .then(r => {
-        this.setState({posts: r.data})
+        r && r.data ? this.setState({posts: r.data}) : console.error('got nil');
       })
   }
 

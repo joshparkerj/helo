@@ -64,9 +64,13 @@ module.exports = {
 
   searchPosts: (req,res,next) => {
     const db = req.app.get('db');
-    db.get_posts([
+    console.log('searching posts ...');
+    console.log(req.query.mine);
+    console.log(`%${req.query.term}%`);
+    console.log(req.query.myid);
+    db.search_posts([
       req.query.mine,
-      req.query.term,
+      `%${req.query.term}%`,
       req.query.myid
     ])
       .then(r => {
