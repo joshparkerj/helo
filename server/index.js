@@ -28,4 +28,6 @@ app.get('/posts',controller.getPosts);
 
 app.get('/searchposts',controller.searchPosts);
 
+app.get('/post/:id',controller.getPost);
+
 app.listen(8080);

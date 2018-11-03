@@ -72,3 +72,13 @@ export function searchPosts(mine,term,myid){
       console.error(err);
     })
 }
+
+export function getPost(id){
+  return axios.get(`${api_address}/post/${id}`)
+    .then(r => {
+      return r;
+    })
+    .catch(err => {
+      console.error(err);
+    })
+}

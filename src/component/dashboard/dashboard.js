@@ -3,6 +3,8 @@ import './dashboard.css';
 import { connect } from 'react-redux';
 import { setPath } from '../../ducks/reducer';
 import { searchPosts } from '../../api';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 class Dashboard extends Component {
 
@@ -10,7 +12,7 @@ class Dashboard extends Component {
     super();
     this.state = {
       term: '',
-      mine: false,
+      mine: true,
       posts: []
     }
   }
@@ -22,6 +24,7 @@ class Dashboard extends Component {
     if (!this.props.myid){
       this.props.history.push('/');
     }
+    this.sp();
   }
 
   hc = e => {
@@ -35,7 +38,19 @@ class Dashboard extends Component {
   sp = () => {
     searchPosts(this.state.mine,this.state.term,this.props.myid)
       .then(r => {
-        r && r.data ? this.setState({posts: r.data}) : console.error('got nil');
+        if (r && r.data){
+          if (r.data.length > 0){
+            this.setState({
+              posts: r.data,
+              term: ''
+            });
+          } else {
+            toast.warn('your search turned up no results');
+          }
+        } else {
+          toast.error('something went wrong');
+          console.error('got nil');
+        }
       })
   }
 
@@ -45,6 +60,8 @@ class Dashboard extends Component {
         <h3>{e.title}</h3>
         <p>{e.content}</p>
         <img src={e.img_url} alt={e.title} />
+        <h6>Author: {e.username}</h6>
+        <img src={e.profile_pic} alt={e.username} />
       </div>
     )
   }
@@ -52,6 +69,7 @@ class Dashboard extends Component {
   render(){
     return(
       <div className="dashboard">
+        <ToastContainer />
         dashboard
         <label>search term:</label><br />
         <input name="term" value={this.state.term} onChange={this.hc} /><br />
@@ -60,6 +78,7 @@ class Dashboard extends Component {
           type="checkbox"
           name="mine"
           value={this.state.mine}
+          checked={this.state.mine}
           onChange={this.cb} />
         <button onClick={this.sp}>Search Posts</button>
         {this.state.posts.map(this.postMapper)}

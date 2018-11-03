@@ -80,6 +80,18 @@ module.exports = {
         res.status(500).send('search posts failed');
         console.error(err);
       })
+  },
+
+  getPost: (req,res,next) => {
+    const db = req.app.get('db');
+    db.get_post([req.params.id])
+      .then(r => {
+        res.status(200).send(r);
+      })
+      .catch(err => {
+        res.status(500).send('get post failed');
+        console.error(err);
+      })
   }
 
 }
