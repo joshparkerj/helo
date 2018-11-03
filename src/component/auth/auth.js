@@ -15,8 +15,6 @@ class Auth extends Component {
   }
 
   componentDidMount(){
-    console.log("auth component just mounted");
-    console.log(this.props.location.pathname);
     this.props.setPath(this.props.location.pathname,this.props.history);
   }
 
@@ -27,10 +25,6 @@ class Auth extends Component {
   login = () => {
     postLogin(this.state.username,this.state.password)
       .then(r => {
-        console.log(r);
-        console.log(r.data);
-        console.log(r.data[0]);
-        console.log(r.data[0].id);
         this.props.loginInfo(
           r.data[0].id,
           r.data[0].username,
@@ -45,7 +39,6 @@ class Auth extends Component {
   register = () => {
     postRegistration(this.state.username,this.state.password)
       .then(r => {
-        console.log(r);
         this.props.loginInfo(
           r.data[0].id,
           r.data[0].username,

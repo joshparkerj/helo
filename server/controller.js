@@ -15,7 +15,6 @@ module.exports = {
       })
       .catch(err => {
         res.status(500).send('post registration failed');
-        console.error(err);
       })
   },
 
@@ -30,13 +29,11 @@ module.exports = {
       })
       .catch(err => {
         res.status(500).send('post login failed');
-        console.error(err);
       })
   },
 
   postPic: (req,res,next) => {
     const db = req.app.get('db');
-    console.log(req.body.userid);
     db.post_pic([
       req.body.pic,
       req.body.userid
@@ -46,7 +43,6 @@ module.exports = {
       })
       .catch(err => {
         res.status(500).send('post pic failed');
-        console.error(err);
       })
   },
 
@@ -58,16 +54,11 @@ module.exports = {
       })
       .catch(err => {
         res.status(500).send('get posts failed');
-        console.error(err);
       })
   },
 
   searchPosts: (req,res,next) => {
     const db = req.app.get('db');
-    console.log('searching posts ...');
-    console.log(req.query.mine);
-    console.log(`%${req.query.term}%`);
-    console.log(req.query.myid);
     db.search_posts([
       req.query.mine,
       `%${req.query.term}%`,
@@ -78,7 +69,6 @@ module.exports = {
       })
       .catch(err => {
         res.status(500).send('search posts failed');
-        console.error(err);
       })
   },
 
@@ -90,7 +80,6 @@ module.exports = {
       })
       .catch(err => {
         res.status(500).send('get post failed');
-        console.error(err);
       })
   }
 

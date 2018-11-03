@@ -7,8 +7,6 @@ const initState = {
 }
 
 export const setPath = (path,history) => {
-  console.log("set path invoked");
-  console.log(path);
   return {
     type: "GET_PATH",
     payload: {
@@ -39,21 +37,14 @@ export const changePic = pic => {
 }
 
 const reducer = (state=initState, actions) => {
-  console.log("reducer invoked");
-  console.log("state is: ");
-  console.log(state);
-  console.log("actions are: ");
-  console.log(actions);
   switch(actions.type){
     case "GET_PATH":
-      console.log("case was get path");
       return {
         ...state,
         path: actions.payload.path,
         history: actions.payload.history
       }
     case "LOGIN_INFO":
-      console.log("case was login info");
       return {
         ...state,
         id: actions.payload.id,
@@ -61,13 +52,11 @@ const reducer = (state=initState, actions) => {
         profile_pic: actions.payload.profile_pic
       }
     case "CHANGE_PIC":
-      console.log("case was change pic");
       return {
         ...state,
         profile_pic: actions.payload.pic
       }
     default:
-      console.log("case was default");
       return state;
   }
 }

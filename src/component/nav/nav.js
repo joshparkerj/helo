@@ -5,8 +5,6 @@ import { postPic } from '../../api';
 import { changePic } from '../../ducks/reducer';
 
 function Nav(props){
-  console.log("this is the nav component");
-  console.log(props);
   if (props.path === '/'){
     return(
       <div className="none"></div>

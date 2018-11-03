@@ -20,13 +20,8 @@ class Post extends Component {
 
   componentDidMount(){
     this.props.setPath(this.props.location.pathname,this.props.history)
-    console.log("imma bouta tryan get post ...");
-    console.log(this.props.match.params.postid);
     getPost(this.props.match.params.postid)
       .then(r => {
-        console.log('response received');
-        console.log(r);
-        console.log(r.data);
         this.setState({
           post_id: r.data[0].post_id,
           title: r.data[0].title,

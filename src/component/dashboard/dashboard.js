@@ -18,8 +18,6 @@ class Dashboard extends Component {
   }
 
   componentDidMount(){
-    console.log('dashboard has mounted');
-    console.log(this.props);
     this.props.setPath(this.props.location.pathname,this.props.history)
     if (!this.props.myid){
       this.props.history.push('/');
@@ -49,7 +47,6 @@ class Dashboard extends Component {
           }
         } else {
           toast.error('something went wrong');
-          console.error('got nil');
         }
       })
   }

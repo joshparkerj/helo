@@ -8,7 +8,6 @@ export function postRegistration(username,password){
     password: password
   })
     .then(r => {
-      console.log(r);
       return axios.post(`${api_address}/login`, {
         username: username,
         password: password
@@ -31,7 +30,6 @@ export function postLogin(username,password){
     password: password
   })
     .then(r => {
-      console.log(r);
       return r;
     })
     .catch(err => {
