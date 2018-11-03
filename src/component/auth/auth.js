@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './auth.css';
 import { connect } from 'react-redux';
-import { setPath } from '../../ducks/reducer';
+import { setPath, loginInfo } from '../../ducks/reducer';
 import { postRegistration,postLogin } from '../../api';
 
 class Auth extends Component {
@@ -27,6 +27,14 @@ class Auth extends Component {
   login = () => {
     postLogin(this.state.username,this.state.password)
       .then(r => {
+        console.log(r);
+        console.log(r.data);
+        console.log(r.data[0]);
+        console.log(r.data[0].id);
+        this.props.loginInfo(
+          r.data[0].id,
+          r.data[0].username,
+          r.data[0].profile_pic)
         this.props.history.push('/dashboard');
       })
       .catch(err => {
@@ -37,6 +45,11 @@ class Auth extends Component {
   register = () => {
     postRegistration(this.state.username,this.state.password)
       .then(r => {
+        console.log(r);
+        this.props.loginInfo(
+          r.data[0].id,
+          r.data[0].username,
+          r.data[0].profile_pic)
         this.props.history.push('/dashboard');
       })
       .catch(err => {
@@ -88,7 +101,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-  setPath
+  setPath,
+  loginInfo
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Auth);

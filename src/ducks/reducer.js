@@ -1,6 +1,9 @@
 const initState = {
   path: '',
-  history: null
+  history: null,
+  username: '',
+  id: '',
+  profile_pic: ''
 }
 
 export const setPath = (path,history) => {
@@ -11,6 +14,17 @@ export const setPath = (path,history) => {
     payload: {
       path: path,
       history: history
+    }
+  }
+}
+
+export const loginInfo = (id,username,profile_pic) => {
+  return {
+    type: "LOGIN_INFO",
+    payload: {
+      id: id,
+      username: username,
+      profile_pic: profile_pic
     }
   }
 }
@@ -28,6 +42,14 @@ const reducer = (state=initState, actions) => {
         ...state,
         path: actions.payload.path,
         history: actions.payload.history
+      }
+    case "LOGIN_INFO":
+      console.log("case was login info");
+      return {
+        ...state,
+        id: actions.payload.id,
+        username: actions.payload.username,
+        profile_pic: actions.payload.profile_pic
       }
     default:
       console.log("case was default");
