@@ -29,6 +29,15 @@ export const loginInfo = (id,username,profile_pic) => {
   }
 }
 
+export const changePic = pic => {
+  return {
+    type: "CHANGE_PIC",
+    payload: {
+      pic: pic
+    }
+  }
+}
+
 const reducer = (state=initState, actions) => {
   console.log("reducer invoked");
   console.log("state is: ");
@@ -50,6 +59,12 @@ const reducer = (state=initState, actions) => {
         id: actions.payload.id,
         username: actions.payload.username,
         profile_pic: actions.payload.profile_pic
+      }
+    case "CHANGE_PIC":
+      console.log("case was change pic");
+      return {
+        ...state,
+        profile_pic: actions.payload.pic
       }
     default:
       console.log("case was default");

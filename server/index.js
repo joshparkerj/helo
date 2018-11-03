@@ -22,4 +22,10 @@ app.post('/registration',controller.postRegistration);
 
 app.post('/login',controller.postLogin);
 
+app.post('/pic',controller.postPic);
+
+app.get('/posts',controller.getPosts);
+
+app.get('/searchposts',controller.searchPosts);
+
 app.listen(8080);

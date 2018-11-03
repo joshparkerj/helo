@@ -38,3 +38,37 @@ export function postLogin(username,password){
       console.error(err);
     })
 }
+
+export function postPic(pic,userid){
+  return axios.post(`${api_address}/pic`,{
+    pic: pic,
+    userid: userid
+  })
+    .then(r => {
+      return pic;
+    })
+    .catch(err => {
+      console.error(err);
+    })
+}
+
+export function getPosts(){
+  return axios.get(`${api_address}/posts`)
+    .then(r => {
+      return r;
+    })
+    .catch(err => {
+      console.error(err);
+    })
+}
+
+export function searchPosts(mine,term,myid){
+  return axios.get(
+    `${api_address}/searchposts?mine=${mine}&term=${term}&myid=${myid}`)
+    .then(r => {
+      return r;
+    })
+    .catch(err => {
+      console.error(err);
+    })
+}
