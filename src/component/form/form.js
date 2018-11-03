@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './form.css';
 
-export default function Form(props){
-  return(
-    <div className="form">
-      form
-    </div>
-  )
+export default class Form extends Component{
+  
+  render(){
+    return(
+      <div className="form">
+        form
+      </div>
+    )
+  }
+  
 }

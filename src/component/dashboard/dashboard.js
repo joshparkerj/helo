@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './dashboard.css';
 
-export default function Dashboard(props){
-  return(
-    <div className="dashboard">
-      dashboard
-    </div>
-  )
+class Dashboard extends Component {
+
+  render(){
+    return(
+      <div className="dashboard">
+        dashboard
+      </div>
+    )
+  }
+
 }
+
+export default Dashboard;

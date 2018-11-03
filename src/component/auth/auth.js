@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './auth.css';
 
-export default function Auth(props){
-  return(
-    <div className="auth">
-      auth
-    </div>
-  )
+export default class Auth extends Component {
+
+  render(){
+    return(
+      <div className="auth">
+        auth
+      </div>
+    )
+  }
+
 }

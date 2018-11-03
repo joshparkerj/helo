@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './post.css';
 
-export default function Post(props){
-  return(
-    <div className="post">
-      post
-    </div>
-  )
+export default class Post extends Component {
+
+  render(){
+    return(
+      <div className="post">
+        post
+      </div>
+    )
+  }
+
 }
