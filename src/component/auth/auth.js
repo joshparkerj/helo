@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './auth.css';
 import { connect } from 'react-redux';
 import { setPath, loginInfo } from '../../ducks/reducer';
-import { postRegistration,postLogin } from '../../api';
+import { postRegistration, postLogin, getSession } from '../../api';
 
 class Auth extends Component {
 
@@ -25,8 +25,8 @@ class Auth extends Component {
   login = () => {
     postLogin(this.state.username,this.state.password)
       .then(r => {
+        console.log(r.data);
         this.props.loginInfo(
-          r.data[0].id,
           r.data[0].username,
           r.data[0].profile_pic)
         this.props.history.push('/dashboard');
@@ -40,13 +40,19 @@ class Auth extends Component {
     postRegistration(this.state.username,this.state.password)
       .then(r => {
         this.props.loginInfo(
-          r.data[0].id,
           r.data[0].username,
           r.data[0].profile_pic)
         this.props.history.push('/dashboard');
       })
       .catch(err => {
         console.error(err);
+      })
+  }
+
+  session = () => {
+    getSession()
+      .then(r => {
+        console.log(r.data);
       })
   }
 
@@ -78,6 +84,9 @@ class Auth extends Component {
           </li>
           <li>
             <button onClick={this.register}>register</button>
+          </li>
+          <li>
+            <button onClick={this.session}>see current session data</button>
           </li>
         </ul>
       </div>

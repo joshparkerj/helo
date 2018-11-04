@@ -2,7 +2,6 @@ const initState = {
   path: '',
   history: null,
   username: '',
-  id: '',
   profile_pic: ''
 }
 
@@ -16,11 +15,10 @@ export const setPath = (path,history) => {
   }
 }
 
-export const loginInfo = (id,username,profile_pic) => {
+export const loginInfo = (username,profile_pic) => {
   return {
     type: "LOGIN_INFO",
     payload: {
-      id: id,
       username: username,
       profile_pic: profile_pic
     }
@@ -47,7 +45,6 @@ const reducer = (state=initState, actions) => {
     case "LOGIN_INFO":
       return {
         ...state,
-        id: actions.payload.id,
         username: actions.payload.username,
         profile_pic: actions.payload.profile_pic
       }

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const api_address = "http://localhost:8080";
+const api_address = "/";
 
 export function postRegistration(username,password){
   return axios.post(`${api_address}/registration`, {
@@ -8,7 +8,7 @@ export function postRegistration(username,password){
     password: password
   })
     .then(r => {
-      return axios.post(`${api_address}/login`, {
+      return axios.post(`${api_address}/user-login`, {
         username: username,
         password: password
       })
@@ -25,7 +25,7 @@ export function postRegistration(username,password){
 }
 
 export function postLogin(username,password){
-  return axios.post(`${api_address}/login`, {
+  return axios.post(`${api_address}/user-login`, {
     username: username,
     password: password
   })
@@ -37,10 +37,9 @@ export function postLogin(username,password){
     })
 }
 
-export function postPic(pic,userid){
+export function postPic(pic){
   return axios.post(`${api_address}/pic`,{
-    pic: pic,
-    userid: userid
+    pic: pic
   })
     .then(r => {
       return pic;
@@ -60,9 +59,9 @@ export function getPosts(){
     })
 }
 
-export function searchPosts(mine,term,myid){
+export function searchPosts(mine,term){
   return axios.get(
-    `${api_address}/searchposts?mine=${mine}&term=${term}&myid=${myid}`)
+    `${api_address}/searchposts?mine=${mine}&term=${term}`)
     .then(r => {
       return r;
     })
@@ -73,6 +72,40 @@ export function searchPosts(mine,term,myid){
 
 export function getPost(id){
   return axios.get(`${api_address}/post/${id}`)
+    .then(r => {
+      return r;
+    })
+    .catch(err => {
+      console.error(err);
+    })
+}
+
+export function newPost(title,content,img_url){
+  return axios.post(`${api_address}/post`, {
+    title: title,
+    content: content,
+    img_url: img_url
+  })
+    .then(r => {
+      return r;
+    })
+    .catch(err => {
+      console.error(err);
+    })
+}
+
+export function getApiAuthMe(){
+  return axios.get(`${api_address}/api/auth/me`)
+    .then(r => {
+      return r;
+    })
+    .catch(err => {
+      console.error(err);
+    })
+}
+
+export function getSession(){
+  return axios.get(`${api_address}/session`)
     .then(r => {
       return r;
     })

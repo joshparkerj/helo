@@ -5,6 +5,7 @@ import { setPath } from '../../ducks/reducer';
 import { searchPosts } from '../../api';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+import { Link } from 'react-router-dom';
 
 class Dashboard extends Component {
 
@@ -19,9 +20,13 @@ class Dashboard extends Component {
 
   componentDidMount(){
     this.props.setPath(this.props.location.pathname,this.props.history)
+    /*
+    TODO: Find a way to redirect to the login page if a user isn't logged in.
+    That was the function of this code before the conversion to session.
     if (!this.props.myid){
       this.props.history.push('/');
     }
+    */
     this.sp();
   }
 
@@ -34,7 +39,7 @@ class Dashboard extends Component {
   }
 
   sp = () => {
-    searchPosts(this.state.mine,this.state.term,this.props.myid)
+    searchPosts(this.state.mine,this.state.term)
       .then(r => {
         if (r && r.data){
           if (r.data.length > 0){
@@ -59,6 +64,7 @@ class Dashboard extends Component {
         <img src={e.img_url} alt={e.title} />
         <h6>Author: {e.username}</h6>
         <img src={e.profile_pic} alt={e.username} />
+        <Link to={`/post/${e.post_id}`}>Visit this post</Link>
       </div>
     )
   }
@@ -89,7 +95,6 @@ const mapStateToProps = state => {
   return {
     path: state.path,
     duxHistory: state.history,
-    myid: state.id
   }
 }
 
