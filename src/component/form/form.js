@@ -17,14 +17,9 @@ class Form extends Component{
 
   componentDidMount(){
     this.props.setPath(this.props.location.pathname,this.props.history);
-    /*
-    TODO: Find a way to redirect to login page when a user isn't logged in.
-    That was the function of this code before the conversion to session.
-    if (!this.props.user_id){
+    if (!this.props.username){
       this.props.history.push('/');
     }
-    */
-
   }
 
   hc = e => {
@@ -44,7 +39,7 @@ class Form extends Component{
   render(){
     return(
       <div className="form">
-        form
+        <h3 className="heading">New Post</h3>
         <br /><label>title</label><br />
         <input name="title" value={this.state.title} onChange={this.hc} />
         <br /><label>content</label><br />
@@ -61,6 +56,7 @@ const mapStateToProps = state => {
   return {
     path: state.path,
     duxHistory: state.history,
+    username: state.username
   }
 }
 

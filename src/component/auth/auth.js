@@ -3,6 +3,8 @@ import './auth.css';
 import { connect } from 'react-redux';
 import { setPath, loginInfo } from '../../ducks/reducer';
 import { postRegistration, postLogin, getSession } from '../../api';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 class Auth extends Component {
 
@@ -52,43 +54,36 @@ class Auth extends Component {
   session = () => {
     getSession()
       .then(r => {
-        console.log(r.data);
+        if (r.data.session.userid){
+          toast.success(`Logged in! User ID: ${r.data.session.userid}`);
+        } else {
+          toast.warn(`Not logged in! Session ID: ${r.data.sessionID}`);
+        }
       })
   }
 
   render(){
     return(
       <div className="auth">
-        <h4>auth</h4>
-        <ul>
-          <li>
-            <label>username</label>
-          </li>
-          <li>
-            <input
-              name="username"
-              value={this.state.username}
-              onChange={this.handleChange} />
-          </li>
-          <li>
-            <label>password</label>
-          </li>
-          <li>
-            <input
-              name="password"
-              value={this.state.password}
-              onChange={this.handleChange} />
-          </li>
-          <li>
-            <button onClick={this.login}>login</button>
-          </li>
-          <li>
-            <button onClick={this.register}>register</button>
-          </li>
-          <li>
-            <button onClick={this.session}>see current session data</button>
-          </li>
-        </ul>
+        <ToastContainer />
+        <h4>Helo</h4>
+        <div className="auth-inputs">
+          <label>Username:</label>
+          <input
+            name="username"
+            value={this.state.username}
+            onChange={this.handleChange} />
+          <label>Password:</label>
+          <input
+            name="password"
+            value={this.state.password}
+            onChange={this.handleChange} />
+        </div>
+        <div className="auth-buttons">
+          <button onClick={this.login}>login</button>
+          <button onClick={this.register}>register</button>
+          <button onClick={this.session}>see current session data</button>
+        </div>
       </div>
     )
   }

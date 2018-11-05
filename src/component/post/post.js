@@ -36,12 +36,11 @@ class Post extends Component {
   render(){
     return(
       <div className="post">
-        post
-        <h3>{this.state.title}</h3>
+        <h3 className="heading">{this.state.title}</h3>
         <p>{this.state.content}</p>
         <img src={this.state.img_url} alt={this.state.title} />
         <h6>Author: {this.state.username}</h6>
-        <img src={this.state.profile_pic} alt={this.state.username} />
+        <img className="profile-pic" src={this.state.profile_pic} alt={this.state.username} />
       </div>
     )
   }

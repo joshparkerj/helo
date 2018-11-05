@@ -20,13 +20,9 @@ class Dashboard extends Component {
 
   componentDidMount(){
     this.props.setPath(this.props.location.pathname,this.props.history)
-    /*
-    TODO: Find a way to redirect to the login page if a user isn't logged in.
-    That was the function of this code before the conversion to session.
-    if (!this.props.myid){
+    if (!this.props.username){
       this.props.history.push('/');
     }
-    */
     this.sp();
   }
 
@@ -59,12 +55,15 @@ class Dashboard extends Component {
   postMapper = (e,i) => {
     return(
       <div className="post-wrapper" key={i}>
-        <h3>{e.title}</h3>
-        <p>{e.content}</p>
-        <img src={e.img_url} alt={e.title} />
-        <h6>Author: {e.username}</h6>
-        <img src={e.profile_pic} alt={e.username} />
-        <Link to={`/post/${e.post_id}`}>Visit this post</Link>
+        <Link to={`/post/${e.post_id}`}>
+          <div className="wrapped">
+            <h3>{e.title}</h3>
+          </div>
+          <div className="wrapped">
+            <h6>by {e.username}</h6>
+            <img className="profile-pic" src={e.profile_pic} alt={e.username} />
+          </div>
+        </Link>
       </div>
     )
   }
@@ -84,7 +83,9 @@ class Dashboard extends Component {
           checked={this.state.mine}
           onChange={this.cb} />
         <button onClick={this.sp}>Search Posts</button>
-        {this.state.posts.map(this.postMapper)}
+        <div className="post-listing">
+          {this.state.posts.map(this.postMapper)}
+        </div>
       </div>
     )
   }
@@ -95,6 +96,7 @@ const mapStateToProps = state => {
   return {
     path: state.path,
     duxHistory: state.history,
+    username: state.username
   }
 }
 

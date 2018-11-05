@@ -1,3 +1,30 @@
 .auth {
-  margin: 10px;
+  height: 50vh;
+  width: 50vh;
+  margin: 25vh auto;
+  color: #F2F2F2;
+  border-radius: 5px;
+  box-shadow: 3px 9px 20px rgba(0,0,0,0.5);
+}
+
+.auth-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.auth button {
+  color: #F2F2F2;
+  background-color: #403D39;
+  border: none;
+}
+
+h4 {
+  font-size: 50px;
+  width: 100px;
+  margin: auto;
+}
+
+.auth-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }

@@ -37,7 +37,7 @@ app.get('/posts',controller.getPosts);
 
 app.get('/searchposts',controller.searchPosts);
 
-app.get('/post/:id',controller.getPost);
+app.get('/postdata/:id',controller.getPost);
 
 app.post('/post',controller.newPost);
 
@@ -45,6 +45,10 @@ app.post('/logout',controller.logout);
 
 app.get('/api/auth/me',controller.getApiAuthMe);
 
+app.post('/api/auth/logout',controller.logout);
+
 app.get('/session',controller.getSession);
+
+app.get('*',controller.getReact);
 
 app.listen(process.env.PORT || 8080);

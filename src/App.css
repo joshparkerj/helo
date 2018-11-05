@@ -2,3 +2,25 @@
   width: 80vw;
   margin: auto;
 }
+
+.dashboard,.form,.post {
+  border: solid black;
+  margin-left: 15vw;
+  background-color: #F2F2F2;
+}
+
+.profile-pic {
+  height: 5vw;
+  width: 5vw;
+  border-radius: 5vw;
+  margin: 1vw;
+}
+
+.post-wrapper,.profile-pic {
+  box-shadow: 1px 3px 6px rgba(0,0,0,0.5);
+}
+
+.heading {
+  color: #FF9770;
+  font-size: 60px;
+}

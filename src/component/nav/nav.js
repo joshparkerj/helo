@@ -1,20 +1,46 @@
 import React, { Component } from 'react';
 import './nav.css';
 import { connect } from 'react-redux';
-import { postPic, getApiAuthMe } from '../../api';
+import { postPic, getApiAuthMe, logout, getSession } from '../../api';
 import { changePic, loginInfo } from '../../ducks/reducer';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 class Nav extends Component {
 
   componentDidMount(){
     getApiAuthMe()
       .then(r => {
-        this.props.loginInfo(
-          r.data[0].username,
-          r.data[0].profile_pic)
+        if(r.data[0]){
+          this.props.loginInfo(
+            r.data[0].username,
+            r.data[0].profile_pic)  
+        } else {
+          this.props.loginInfo('','');
+        }
       })
       .catch(err => {
         console.error(err);
+      })
+  }
+
+  handleLogout = () => {
+    logout()
+      .then(r => {
+        this.props.loginInfo('','');
+        this.props.history.push('/');
+      })
+      .catch(err => console.error(err));
+  }
+
+  handleSession = () => {
+    getSession()
+      .then(r => {
+        if (r.data.session.userid){
+          toast.success(`Logged in! User ID: ${r.data.session.userid}`);
+        } else {
+          toast.warn(`Not logged in! Session ID: ${r.data.sessionID}`);
+        }
       })
   }
 
@@ -26,9 +52,9 @@ class Nav extends Component {
     }
     return(
       <div className="nav">
-        Nav bar stub
-        <h4>username: {this.props.username}</h4>
+        <ToastContainer />
         <img src={this.props.profile_pic} alt="profile pic" />
+        <h4>{this.props.username}</h4>
         <button
           onClick={() => {
           return postPic(this.props.updatePic)
@@ -49,8 +75,11 @@ class Nav extends Component {
         <button onClick={() => this.props.history.push('/new')}>
           New Post
         </button>
-        <button onClick={() => this.props.history.push('/')}>
+        <button onClick={this.handleLogout}>
           Logout
+        </button>
+        <button onClick={this.handleSession}>
+          Session
         </button>
       </div>
     )

@@ -35,9 +35,6 @@ module.exports = {
   },
 
   postPic: (req,res,next) => {
-    console.log('tryna post pic...');
-    console.log(req.session);
-    console.log(req.session.userid);
     const db = req.app.get('db');
     db.post_pic([
       req.body.pic,
@@ -64,12 +61,6 @@ module.exports = {
 
   searchPosts: (req,res,next) => {
     const db = req.app.get('db');
-    console.log('searching');
-    console.log(req.query.mine);
-    console.log(req.query.term);
-    console.log('let\'s see what the session is ...');
-    console.log(req.session);
-    console.log(req.session.userid);
     db.search_posts([
       req.query.mine,
       `%${req.query.term}%`,
@@ -111,8 +102,6 @@ module.exports = {
   },
 
   logout: (req,res,next) => {
-    console.log('WATCH OUT!');
-    console.log('I AM DESTROYING THE SESSION!');
     req.session.destroy();
     res.status(204).send();
   },
@@ -129,9 +118,11 @@ module.exports = {
   },
   
   getSession: (req,res,next) => {
-    console.log(req.session);
-    console.log(req.sessionID);
     res.send({session: req.session,sessionID: req.sessionID});
+  },
+
+  getReact: (req,res,next) => {
+    res.sendFile(__dirname + '/build/index.html');
   }
 
 }
