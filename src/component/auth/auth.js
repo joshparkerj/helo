@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import './auth.css';
 import { connect } from 'react-redux';
 import { setPath, loginInfo } from '../../ducks/reducer';
-import { postRegistration, postLogin, getSession } from '../../api';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
+import {
+  postRegistration,
+  postLogin,
+  getSession,
+  checkUsername } from '../../api';
+import { toast } from 'react-toastify';
 
 class Auth extends Component {
 
@@ -27,11 +30,14 @@ class Auth extends Component {
   login = () => {
     postLogin(this.state.username,this.state.password)
       .then(r => {
-        console.log(r.data);
-        this.props.loginInfo(
-          r.data[0].username,
-          r.data[0].profile_pic)
-        this.props.history.push('/dashboard');
+        if(r){
+          this.props.loginInfo(
+            r.data[0].username,
+            r.data[0].profile_pic)
+          this.props.history.push('/dashboard');
+        } else {
+          toast.error("can't log you in! check username and password");
+        }
       })
       .catch(err => {
         console.error(err);
@@ -39,15 +45,22 @@ class Auth extends Component {
   }
 
   register = () => {
-    postRegistration(this.state.username,this.state.password)
+    checkUsername(this.state.username)
       .then(r => {
-        this.props.loginInfo(
-          r.data[0].username,
-          r.data[0].profile_pic)
-        this.props.history.push('/dashboard');
-      })
-      .catch(err => {
-        console.error(err);
+        if(!(r.data[0])){
+          postRegistration(this.state.username,this.state.password)
+          .then(r => {
+            this.props.loginInfo(
+              r.data[0].username,
+              r.data[0].profile_pic)
+            this.props.history.push('/dashboard');
+          })
+          .catch(err => {
+            console.error(err);
+          })
+        } else {
+          toast.error('username not available!');
+        }
       })
   }
 
@@ -65,7 +78,7 @@ class Auth extends Component {
   render(){
     return(
       <div className="auth">
-        <ToastContainer />
+        <img src="/helo_logo.png" alt="Helo" />
         <h4>Helo</h4>
         <div className="auth-inputs">
           <label>Username:</label>

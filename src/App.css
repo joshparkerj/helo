@@ -23,4 +23,22 @@
 .heading {
   color: #FF9770;
   font-size: 60px;
+  line-height: 1;
+}
+
+.auth button,.form button {
+  color: #F2F2F2;
+  background-image: radial-gradient(at top, #999999, #403d39);
+  border: none;
+  padding: 5px 10px;
+}
+
+.auth button:hover,.form button:hover {
+  cursor: pointer;
+  background-image: radial-gradient(at top, #bbbbbb, #625f5b);
+}
+
+.nav button:hover {
+  cursor: pointer;
+  background-color: rgba(255,255,255,0.2);
 }

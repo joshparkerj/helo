@@ -3,3 +3,26 @@
   padding: 20px;
   background-color: #7FFF00;
 }
+
+.form label {
+  font-weight: 900;
+}
+
+textarea,.form input {
+  width: 90%;
+}
+
+textarea {
+  height: 14vw;
+}
+
+.form button {
+  position: relative;
+  left: 53vw;
+}
+
+.form-image {
+  width: 33vh;
+  display: block;
+  margin: auto;
+}

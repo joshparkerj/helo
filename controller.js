@@ -116,13 +116,24 @@ module.exports = {
         res.status(500).send('get api auth me failed');
       })
   },
-  
+
   getSession: (req,res,next) => {
     res.send({session: req.session,sessionID: req.sessionID});
   },
 
   getReact: (req,res,next) => {
     res.sendFile(__dirname + '/build/index.html');
+  },
+
+  checkUsername: (req,res,next) => {
+    const db = req.app.get('db');
+    db.check_username([req.query.username])
+      .then(r => {
+        res.status(200).send(r);
+      })
+      .catch(err => {
+        res.status(500).send('check username failed');
+      })
   }
 
 }

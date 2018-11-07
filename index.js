@@ -43,6 +43,8 @@ app.post('/post',controller.newPost);
 
 app.post('/logout',controller.logout);
 
+app.get('/api/auth/username',controller.checkUsername);
+
 app.get('/api/auth/me',controller.getApiAuthMe);
 
 app.post('/api/auth/logout',controller.logout);

@@ -40,13 +40,22 @@ class Form extends Component{
     return(
       <div className="form">
         <h3 className="heading">New Post</h3>
-        <br /><label>title</label><br />
+        <br /><label>Title:</label><br />
         <input name="title" value={this.state.title} onChange={this.hc} />
-        <br /><label>content</label><br />
-        <input name="content" value={this.state.content} onChange={this.hc} />
-        <br /><label>image url</label><br />
+        <img
+          className="form-image"
+          src={this.state.imgurl}
+          alt="Preview"
+          onError={i => i.target.src = '/no_image.jpg'}
+        />
+        <br /><label>Image URL:</label><br />
         <input name="imgurl" value={this.state.imgurl} onChange={this.hc} />
-        <br /><button onClick={this.handleClick}>submit this new post</button>
+        <br /><label>Content:</label><br />
+        <textarea
+          name="content"
+          value={this.state.content}
+          onChange={this.hc} />
+        <br /><button onClick={this.handleClick}>Post</button>
       </div>
     )
   }

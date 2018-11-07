@@ -123,3 +123,13 @@ export function logout(){
       console.error(err);
     })
 }
+
+export function checkUsername(username){
+  return axios.get(`${api_address}api/auth/username?username=${username}`)
+    .then(r => {
+      return r;
+    })
+    .catch(err => {
+      console.error(err);
+    })
+}

@@ -1,11 +1,23 @@
-.post-wrapper,.post-wrapper a {
+.post-wrapper,.post-wrapper a,.dashboard-search {
   width: 100%;
   margin-bottom: 5px;
   border-radius: 2px;
   display: flex;
   justify-content: space-between;
+  background-color: white;
 }
 
 h3,h6,.wrapped {
   display: inline-block;
+}
+
+.search-bar {
+  width: 28vw;
+  margin-right: 0;
+}
+
+.dashboard-search button {
+  border: none;
+  background-color: #ff9770;
+  margin-left: 0;
 }

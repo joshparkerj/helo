@@ -3,8 +3,7 @@ import './dashboard.css';
 import { connect } from 'react-redux';
 import { setPath } from '../../ducks/reducer';
 import { searchPosts } from '../../api';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
+import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 
 class Dashboard extends Component {
@@ -71,18 +70,25 @@ class Dashboard extends Component {
   render(){
     return(
       <div className="dashboard">
-        <ToastContainer />
-        dashboard
-        <label>search term:</label><br />
-        <input name="term" value={this.state.term} onChange={this.hc} /><br />
-        <label>My Posts:</label>
-        <input
-          type="checkbox"
-          name="mine"
-          value={this.state.mine}
-          checked={this.state.mine}
-          onChange={this.cb} />
-        <button onClick={this.sp}>Search Posts</button>
+        <div className="dashboard-search">
+          <input
+            className="search-bar"
+            name="term"
+            value={this.state.term}
+            onChange={this.hc}
+            placeholder="Search by Title" />
+          <button onClick={this.sp}>
+            <img src="/search_logo.png" alt="Search Posts" />
+          </button>
+          <label>My Posts:</label>
+          <input
+            className="my-posts"
+            type="checkbox"
+            name="mine"
+            value={this.state.mine}
+            checked={this.state.mine}
+            onChange={this.cb} />
+        </div>
         <div className="post-listing">
           {this.state.posts.map(this.postMapper)}
         </div>

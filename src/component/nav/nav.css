@@ -11,9 +11,27 @@
   width: 15vw;
   border-radius: 15vw;
   box-shadow: 3px 9px 20px rgba(0,0,0,0.5);
-  margin: 4vw;
+  margin: 30px 4vw;
 }
 
 .nav h4 {
   font-size: 14px;
+}
+
+.nav label {
+  font-size: 1.3vw;
+  display: block;
+  margin: 0;
+}
+
+.nav button {
+  background: none;
+  border: none;
+}
+
+.nav button img {
+  border-radius: 0;
+  box-shadow: none;
+  height: 4vw;
+  width: 4vw;
 }

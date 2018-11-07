@@ -3,8 +3,7 @@ import './nav.css';
 import { connect } from 'react-redux';
 import { postPic, getApiAuthMe, logout, getSession } from '../../api';
 import { changePic, loginInfo } from '../../ducks/reducer';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
+import { toast } from 'react-toastify';
 
 class Nav extends Component {
 
@@ -14,7 +13,7 @@ class Nav extends Component {
         if(r.data[0]){
           this.props.loginInfo(
             r.data[0].username,
-            r.data[0].profile_pic)  
+            r.data[0].profile_pic)
         } else {
           this.props.loginInfo('','');
         }
@@ -52,10 +51,10 @@ class Nav extends Component {
     }
     return(
       <div className="nav">
-        <ToastContainer />
         <img src={this.props.profile_pic} alt="profile pic" />
         <h4>{this.props.username}</h4>
         <button
+          className="pic-button"
           onClick={() => {
           return postPic(this.props.updatePic)
             .then(r => this.props.changePic(r))
@@ -70,16 +69,16 @@ class Nav extends Component {
           value={this.props.updatePic}
           onChange={this.props.hc} />
         <button onClick={() => this.props.history.push('/dashboard')}>
-          Home
+          <img src="/home_logo.png" alt="Home" />
         </button>
         <button onClick={() => this.props.history.push('/new')}>
-          New Post
+          <img src="/new_logo.png" alt="New Post" />
         </button>
         <button onClick={this.handleLogout}>
-          Logout
+          <img src="/shut_down.png" alt="Logout" />
         </button>
         <button onClick={this.handleSession}>
-          Session
+          <img src="/fuzzy_network.png" alt="Session" />
         </button>
       </div>
     )

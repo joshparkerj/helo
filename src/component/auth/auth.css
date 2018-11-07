@@ -9,22 +9,32 @@
 
 .auth-buttons {
   display: flex;
+  margin-top: 20px;
   justify-content: space-around;
 }
 
-.auth button {
-  color: #F2F2F2;
-  background-color: #403D39;
-  border: none;
-}
-
 h4 {
-  font-size: 50px;
-  width: 100px;
+  font-size: 6vw;
+  width: min-content;
   margin: auto;
 }
 
 .auth-inputs {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
+}
+
+input,label {
+  margin: 15px;
+}
+
+label {
+  text-alignt: right;
+}
+
+.auth img {
+  margin: auto;
+  padding: 20px;
+  width: min-content;
+  display: block;
 }
