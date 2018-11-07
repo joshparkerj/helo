@@ -2,6 +2,7 @@
 
 .env
 sql-notes.txt
+heroku-notes.txt
 
 # dependencies
 /node_modules
