@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Nav from './component/nav/nav';
 import Routes from './route';
-import './app.css';
+import './App.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
