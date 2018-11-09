@@ -7,11 +7,11 @@
 }
 
 .nav img {
-  height: 15vw;
-  width: 15vw;
-  border-radius: 15vw;
+  height: 15vh;
+  width: 15vh;
+  border-radius: 15vh;
   box-shadow: 3px 9px 20px rgba(0,0,0,0.5);
-  margin: 30px 4vw;
+  margin: 30px 4vh;
 }
 
 .nav h4 {
@@ -25,6 +25,7 @@
 }
 
 .nav button {
+  display: block;
   background: none;
   border: none;
 }
@@ -32,6 +33,10 @@
 .nav button img {
   border-radius: 0;
   box-shadow: none;
-  height: 4vw;
-  width: 4vw;
+  height: 4vh;
+  width: 4vh;
+}
+
+.nav input {
+  width: 21vw;
 }

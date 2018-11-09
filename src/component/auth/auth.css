@@ -14,7 +14,7 @@
 }
 
 h4 {
-  font-size: 6vw;
+  font-size: 6vh;
   width: min-content;
   margin: auto;
 }
@@ -25,16 +25,17 @@ h4 {
 }
 
 input,label {
-  margin: 15px;
+  margin: 1vh;
 }
 
 label {
-  text-alignt: right;
+  text-align: right;
 }
 
 .auth img {
+  height: 13vh;
   margin: auto;
   padding: 20px;
-  width: min-content;
+  width: auto;
   display: block;
 }

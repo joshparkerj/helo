@@ -1,3 +1,7 @@
 .post {
   font-weight: 900;
 }
+
+.post img {
+  max-width: 100%;
+}
