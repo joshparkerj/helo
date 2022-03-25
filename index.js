@@ -3,12 +3,15 @@ const bodyParser = require('body-parser');
 const massive = require('massive');
 const cors = require('cors');
 const session = require('express-session');
+const rateLimit = require('express-rate-limit');
 const debugIndex = require('debug')('');
 require('dotenv').config();
 
 const controller = require('./controller');
 
 const app = express();
+
+app.use(rateLimit({ windowMs: 100000, max: 100 }));
 
 massive(process.env.DBH)
   .then((db) => {
@@ -24,7 +27,7 @@ app.use(session({
   secret: process.env.SEC,
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false },
+  cookie: { secure: true },
 }));
 
 app.use(express.static('./build'));
