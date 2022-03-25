@@ -1,135 +1,114 @@
 import axios from 'axios';
+import debug from 'debug';
 
-const api_address = "/";
+const debugApi = debug('api');
+const apiAddress = '/';
 
-export function postRegistration(username,password){
-  return axios.post(`${api_address}registration`, {
-    username: username,
-    password: password
+export function postRegistration(username, password) {
+  return axios.post(`${apiAddress}registration`, {
+    username,
+    password,
   })
-    .then(r => {
-      return axios.post(`${api_address}user-login`, {
-        username: username,
-        password: password
-      })
-        .then(r => {
-          return r;
-        })
-        .catch(err => {
-          console.error(err);
-        })
+    .then(() => axios.post(`${apiAddress}user-login`, {
+      username,
+      password,
     })
-    .catch(err => {
-      console.error(err);
-    })
+      .then((r) => r)
+      .catch((err) => {
+        debugApi(err);
+      }))
+    .catch((err) => {
+      debugApi(err);
+    });
 }
 
-export function postLogin(username,password){
-  return axios.post(`${api_address}user-login`, {
-    username: username,
-    password: password
+export function postLogin(username, password) {
+  return axios.post(`${apiAddress}user-login`, {
+    username,
+    password,
   })
-    .then(r => {
-      return r;
-    })
-    .catch(err => {
-      console.error(err);
-    })
+    .then((r) => r)
+    .catch((err) => {
+      debugApi(err);
+    });
 }
 
-export function postPic(pic){
-  return axios.post(`${api_address}pic`,{
-    pic: pic
+export function postPic(pic) {
+  return axios.post(`${apiAddress}pic`, {
+    pic,
   })
-    .then(r => {
-      return pic;
-    })
-    .catch(err => {
-      console.error(err);
-    })
+    .then(() => pic)
+    .catch((err) => {
+      debugApi(err);
+    });
 }
 
-export function getPosts(){
-  return axios.get(`${api_address}posts`)
-    .then(r => {
-      return r;
-    })
-    .catch(err => {
-      console.error(err);
-    })
+export function getPosts() {
+  return axios.get(`${apiAddress}posts`)
+    .then((r) => r)
+    .catch((err) => {
+      debugApi(err);
+    });
 }
 
-export function searchPosts(mine,term){
+export function searchPosts(mine, term) {
   return axios.get(
-    `${api_address}searchposts?mine=${mine}&term=${term}`)
-    .then(r => {
-      return r;
-    })
-    .catch(err => {
-      console.error(err);
-    })
+    `${apiAddress}searchposts?mine=${mine}&term=${term}`,
+  )
+    .then((r) => r)
+    .catch((err) => {
+      debugApi(err);
+    });
 }
 
-export function getPost(id){
-  return axios.get(`${api_address}postdata/${id}`)
-    .then(r => {
-      return r;
-    })
-    .catch(err => {
-      console.error(err);
-    })
+export function getPost(id) {
+  return axios.get(`${apiAddress}postdata/${id}`)
+    .then((r) => r)
+    .catch((err) => {
+      debugApi(err);
+    });
 }
 
-export function newPost(title,content,img_url){
-  return axios.post(`${api_address}post`, {
-    title: title,
-    content: content,
-    img_url: img_url
+export function newPost(title, content, imgUrl) {
+  return axios.post(`${apiAddress}post`, {
+    title,
+    content,
+    img_url: imgUrl,
   })
-    .then(r => {
-      return r;
-    })
-    .catch(err => {
-      console.error(err);
-    })
+    .then((r) => r)
+    .catch((err) => {
+      debugApi(err);
+    });
 }
 
-export function getApiAuthMe(){
-  return axios.get(`${api_address}api/auth/me`)
-    .then(r => {
-      return r;
-    })
-    .catch(err => {
-      console.error(err);
-    })
+export function getApiAuthMe() {
+  return axios.get(`${apiAddress}api/auth/me`)
+    .then((r) => r)
+    .catch((err) => {
+      debugApi(err);
+    });
 }
 
-export function getSession(){
-  return axios.get(`${api_address}session`)
-    .then(r => {
-      return r;
-    })
-    .catch(err => {
-      console.error(err);
-    })
+export function getSession() {
+  return axios.get(`${apiAddress}session`)
+    .then((r) => r)
+    .catch((err) => {
+      debugApi(err);
+    });
 }
 
-export function logout(){
-  return axios.post(`${api_address}api/auth/logout`,{})
-    .then(r => {
-      return r;
-    })
-    .catch(err => {
-      console.error(err);
-    })
+export function logout() {
+  return axios.post(`${apiAddress}api/auth/logout`, {})
+    .then((r) => r)
+    .catch((err) => {
+      debugApi(err);
+    });
 }
 
-export function checkUsername(username){
-  return axios.get(`${api_address}api/auth/username?username=${username}`)
-    .then(r => {
-      return r;
-    })
-    .catch(err => {
-      console.error(err);
-    })
+export function checkUsername(username) {
+  return axios.get(`${apiAddress}api/auth/username?username=${username}`)
+    .then((r) => r)
+    .catch((err) => {
+      debugApi(err);
+    });
 }

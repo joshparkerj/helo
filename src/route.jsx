@@ -5,7 +5,7 @@ import Auth from './component/auth/auth';
 import Form from './component/form/form';
 import Post from './component/post/post';
 
-export default function Routes(props){
+const Routes = function Routes() {
   return (
     <Switch>
       <Route path="/dashboard" component={Dashboard} />
@@ -13,5 +13,7 @@ export default function Routes(props){
       <Route path="/new" component={Form} />
       <Route exact path="/" component={Auth} />
     </Switch>
-  )
-}
+  );
+};
+
+export default Routes;
