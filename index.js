@@ -3,8 +3,10 @@ const bodyParser = require('body-parser');
 const massive = require('massive');
 const cors = require('cors');
 const session = require('express-session');
+const csrf = require('csurf');
 const rateLimit = require('express-rate-limit');
 const debugIndex = require('debug')('');
+
 require('dotenv').config();
 
 const controller = require('./controller');
@@ -29,6 +31,8 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: true },
 }));
+
+app.use(csrf({ cookie: true }));
 
 app.use(express.static('./build'));
 
