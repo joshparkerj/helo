@@ -9,11 +9,13 @@ import store from './ducks/store';
 import App from './App';
 
 it('renders without crashing', () => {
-  render(<Provider store={store}>
-    <Router>
-      <App />
-    </Router>
-  </Provider>);
+  render(
+    <Provider store={store}>
+      <Router>
+        <App />
+      </Router>
+    </Provider>,
+  );
   const helo = screen.getByText(/helo/i);
   expect(helo).toBeInTheDocument();
 });
