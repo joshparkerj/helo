@@ -64,6 +64,7 @@ const Nav = function Nav({
       <div className="none" />
     );
   }
+
   return (
     <div className="nav">
       <img src={profilePic} alt="profile pic" />
@@ -106,13 +107,18 @@ Nav.propTypes = {
   loginInfo: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func,
-  }).isRequired,
-  path: PropTypes.string.isRequired,
+  }),
+  path: PropTypes.string,
   profile_pic: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
   updatePic: PropTypes.string.isRequired,
   changePic: PropTypes.func.isRequired,
   hc: PropTypes.func.isRequired,
+};
+
+Nav.defaultProps = {
+  history: null,
+  path: '/',
 };
 
 const mapStateToProps = (state) => ({

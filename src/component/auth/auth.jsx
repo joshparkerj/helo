@@ -22,7 +22,7 @@ const Auth = function Auth({
   const [password, setPassword] = useState('');
 
   useEffect(() => {
-    path(location.pathname, history);
+    path(location?.pathname, history);
   }, []);
 
   const handleLogin = () => {

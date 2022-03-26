@@ -36,6 +36,8 @@ app.use(csrf({ cookie: true }));
 
 app.use(express.static('./build'));
 
+app.use(express.static('./dist'));
+
 app.get('/health', controller.getHealth);
 
 app.post('/registration', controller.postRegistration);

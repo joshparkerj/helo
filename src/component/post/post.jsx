@@ -16,7 +16,7 @@ const Post = function Post({
   const [profilePic, setProfilePic] = useState('');
 
   useEffect(() => {
-    path(location.pathname, history);
+    path(location?.pathname, history);
     getPost(match.params.postid)
       .then((r) => {
         setTitle(r.data[0].title);

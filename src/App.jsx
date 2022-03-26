@@ -12,6 +12,7 @@ const App = function App() {
 
   return (
     <div className="app">
+      {/* <h1>helo</h1> */}
       <ToastContainer />
       <Nav updatePic={updatePic} hc={({ target }) => setUpdatePic(target.value)} />
       <Routes />

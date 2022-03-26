@@ -14,7 +14,7 @@ const Form = function Form({
   const [imgurl, setImgurl] = useState('');
 
   useEffect(() => {
-    path(location.pathname, history);
+    path(location?.pathname, history);
     if (!username) {
       history.push('/');
     }
